@@ -1,4 +1,8 @@
-package racingcar;
+package racingcar.Controller;
+
+import racingcar.Model.Car;
+import racingcar.View.InputView;
+import racingcar.View.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,26 +11,15 @@ import static racingcar.Utils.Utility.getRandomNumber;
 import static racingcar.Utils.Validator.validNameForm;
 import static racingcar.Utils.Validator.validNumber;
 
-public class RacingCarController {
+public class CarRacingController {
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
 
     public void init() {
-        List<Car> cars = new ArrayList<>();
         try {
-            String input = inputView.getNamesInput();
-            List<String> names;
-            // 형식 검증
-            if (validNameForm(input)) {
-                names = List.of(input.split(","));
-                cars = createCars(names);
-            }
-            String tryNum = inputView.getTryInput();
-            if (validNumber(tryNum)) {
-                racingStart(cars, Integer.parseInt(tryNum));
-            }
-            List<String> winners = whoIsWinner(cars);
-            outputView.printWinner(winners);
+            List<Car> cars = ready(inputView.getNamesInput());
+            start(cars);
+            finish(cars);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(e.getMessage());
         }
@@ -66,5 +59,26 @@ public class RacingCarController {
             cars.add(new Car(name));
         }
         return cars;
+    }
+
+    private List<Car> ready(String input) {
+        List<Car> cars = new ArrayList<>();
+        if (validNameForm(input)) {
+            List<String> names = List.of(input.split(","));
+            cars = createCars(names);
+        }
+        return cars;
+    }
+
+    private void start(List<Car> cars) {
+        String tryNum = inputView.getTryInput();
+        if (validNumber(tryNum)) {
+            racingStart(cars, Integer.parseInt(tryNum));
+        }
+    }
+
+    private void finish(List<Car> cars) {
+        List<String> winners = whoIsWinner(cars);
+        outputView.printWinner(winners);
     }
 }

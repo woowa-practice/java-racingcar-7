@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.Model;
+
+import racingcar.Constant.ErrorConstants;
 
 public class Car {
     private final String name;

@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.Constant;
 
 public class ErrorConstants {
     public static final String OVER_5_LENGTH = "[ERROR] 자동차 이름은 다섯 글자를 넘을 수 없습니다. 다시 입력해주세요.";

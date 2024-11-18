@@ -1,6 +1,6 @@
 package racingcar.Utils;
 
-import racingcar.ErrorConstants;
+import racingcar.Constant.ErrorConstants;
 
 public class Validator {
     public static boolean validNameForm(String input) {
