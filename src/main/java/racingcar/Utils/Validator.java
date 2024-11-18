@@ -7,7 +7,7 @@ public class Validator {
         if (input.isBlank() || input.isEmpty()) {
             throw new IllegalArgumentException(ErrorConstants.EMPTY_INPUT);
         }
-        if (!input.matches("[\\w가-힣ㄱ-ㅎㅏ-ㅣ]+(,[\\w가-힣ㄱ-ㅎㅏ-ㅣ]{0,5}){0,}")) {
+        if (!input.matches("[\\w가-힣ㄱ-ㅎㅏ-ㅣ]+(,[\\w가-힣ㄱ-ㅎㅏ-ㅣ]+){0,}")) {
             throw new IllegalArgumentException(ErrorConstants.INVALID_FORM);
         }
         return true;
