@@ -4,17 +4,20 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.Controller.CarRacingController;
+import racingcar.Model.Car;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CarTest extends NsTest {
-    RacingCarController racingCarController = new RacingCarController();
-    @ValueSource(strings = {"pobiii","pobi,해은1234","해은1234"})
+    CarRacingController carRacingController = new CarRacingController();
+
+    @ValueSource(strings = {"pobiii", "pobi,해은1234", "해은1234"})
     @ParameterizedTest
-    void 이름이_다섯글자_넘으면_예외를_반환한다(String input){
-        assertThrows(IllegalArgumentException.class,()->{
+    void 이름이_다섯글자_넘으면_예외를_반환한다(String input) {
+        assertThrows(IllegalArgumentException.class, () -> {
             new Car(input);
         });
     }
@@ -24,7 +27,7 @@ class CarTest extends NsTest {
         Car car = new Car("pobi");
         assertRandomNumberInRangeTest(
                 () -> {
-                    racingCarController.racingStart(java.util.List.of(car),1);
+                    carRacingController.racingStart(java.util.List.of(car), 1);
                     assertThat(car.getPosition()).isEqualTo(1);
                 },
                 4
