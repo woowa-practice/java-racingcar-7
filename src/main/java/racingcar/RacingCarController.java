@@ -9,6 +9,7 @@ import static racingcar.Utils.Validator.validNumber;
 
 public class RacingCarController {
     private static final InputView inputView = new InputView();
+    private static final OutputView outputView = new OutputView();
 
     public void init() {
         List<Car> cars = new ArrayList<>();
@@ -30,10 +31,13 @@ public class RacingCarController {
     }
 
     private void racingStart(List<Car> cars, int tryNum) {
+        outputView.startPrintProcess();
         for (int i = 0; i < tryNum; i++) {
             for (Car car : cars) {
                 car.runOrStay(getRandomNumber());
+                outputView.printProcess(car);
             }
+            System.out.print("\n");
         }
     }
 

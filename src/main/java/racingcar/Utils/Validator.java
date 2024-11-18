@@ -18,7 +18,7 @@ public class Validator {
             throw new IllegalArgumentException(ErrorConstants.EMPTY_INPUT);
         }
         if (!input.matches("\\d+")) {
-            throw new IllegalArgumentException(ErrorConstants.INVALID_FORM);
+            throw new IllegalArgumentException(ErrorConstants.INVALID_NUMBER);
         }
         return true;
     }
