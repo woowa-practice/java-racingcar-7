@@ -25,12 +25,14 @@ public class RacingCarController {
             if (validNumber(tryNum)) {
                 racingStart(cars, Integer.parseInt(tryNum));
             }
+            List<String> winners = whoIsWinner(cars);
+            outputView.printWinner(winners);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            throw new IllegalArgumentException(e.getMessage());
         }
     }
 
-    private void racingStart(List<Car> cars, int tryNum) {
+    public void racingStart(List<Car> cars, int tryNum) {
         outputView.startPrintProcess();
         for (int i = 0; i < tryNum; i++) {
             for (Car car : cars) {
@@ -39,6 +41,22 @@ public class RacingCarController {
             }
             System.out.print("\n");
         }
+    }
+
+    private List<String> whoIsWinner(List<Car> cars) {
+        int max_process = 0;
+        List<String> winners = new ArrayList<>();
+        for (Car car : cars) {
+            if (car.getPosition() > max_process) {
+                max_process = car.getPosition();
+                winners = new ArrayList<>(List.of(car.getName()));
+                continue;
+            }
+            if (car.getPosition() == max_process) {
+                winners.add(car.getName());
+            }
+        }
+        return winners;
     }
 
 

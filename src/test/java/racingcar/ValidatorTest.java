@@ -24,9 +24,17 @@ class ValidatorTest {
 
     @ValueSource(strings = {"\n", "\t", "\r"})
     @ParameterizedTest
-    void 입력이_없으면_예외가_발생한다(){
+    void 입력이_없으면_예외가_발생한다(String input){
         assertThrows(IllegalArgumentException.class, () -> {
-            Validator.validNameForm("\n");
+            Validator.validNameForm(input);
+        });
+    }
+
+    @ValueSource(strings = {"i", "34ui", "12;"})
+    @ParameterizedTest
+    void 횟수_입력이_숫자가_아니면_예외가_발생한다(String input){
+        assertThrows(IllegalArgumentException.class, () -> {
+            Validator.validNumber(input);
         });
     }
 }
